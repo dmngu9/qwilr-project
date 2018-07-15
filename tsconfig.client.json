@@ -1,13 +1,14 @@
 {
     "extends": "./tsconfig.json",
     "compilerOptions": {
-        "noErrorTruncation": true,
+        "esModuleInterop": false,
         "rootDir": "client",
         "module": "commonjs",
         "target": "es5",
+        "allowSyntheticDefaultImports": false,
         "lib": [
             "dom",
-            "es5",    
+            "es5",
             "es2015.core",
             "es2015.promise",
             "es2016.array.include",
@@ -17,14 +18,9 @@
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "paths": {
-            "*": [
-                "node_modules",
-                "client/*"
-            ]
+            "*": ["node_modules", "client/*"]
         }
     },
-    "include": [
-        "client/**/*"
-    ],
+    "include": ["client/**/*"],
     "exclude": ["node_modules", "client/**/*.test.tsx"]
 }

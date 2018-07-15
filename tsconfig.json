@@ -1,12 +1,13 @@
 {
     "compilerOptions": {
         "noErrorTruncation": true,
+        "esModuleInterop": true,
         "outDir": "dist",
         "sourceMap": true,
         "jsx": "react",
         "moduleResolution": "node",
         "forceConsistentCasingInFileNames": true,
-        "allowSyntheticDefaultImports": false,
+        "allowSyntheticDefaultImports": true,
         "noImplicitReturns": true,
         "noImplicitThis": true,
         "noImplicitAny": true,
@@ -14,8 +15,6 @@
         "suppressImplicitAnyIndexErrors": true,
         "alwaysStrict": true,
         "pretty": true,
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
         "baseUrl": "."
     }
 }
