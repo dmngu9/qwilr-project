@@ -1,0 +1,22 @@
+{
+    "extends": "./tsconfig.js",
+    "compilerOptions": {
+        "module": "commonjs",
+        "esModuleInterop": true,
+        "target": "es6",
+        "rootDir": "server",
+        "paths": {
+            "*": [
+                "node_modules",
+                "server/*"
+            ]
+        }
+    },
+    "include": [
+        "server/**/*"
+    ],
+    "exclude": [
+        "node_modules",
+        "server/**/*.test.ts"
+    ]
+}

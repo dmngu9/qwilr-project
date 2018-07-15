@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "noErrorTruncation": true,
+        "outDir": "dist",
+        "sourceMap": true,
+        "jsx": "react",
+        "moduleResolution": "node",
+        "forceConsistentCasingInFileNames": true,
+        "allowSyntheticDefaultImports": false,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "alwaysStrict": true,
+        "pretty": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "baseUrl": "."
+    }
+}

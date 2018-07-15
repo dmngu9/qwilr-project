@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test enzyme should render correctly 1`] = `
+<div>
+  Hye ou
+</div>
+`;
