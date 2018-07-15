@@ -14,7 +14,8 @@
     "client:hot": "NODE_ENV=development webpack-dev-server --config webpack.config.js",
     "build:client:dev": "NODE_ENV=development webpack --config webpack.config.js",
     "build:client:prod": "NODE_ENV=production webpack --config webpack.config.js",
-    "storybook": "start-storybook -p 9000"
+    "storybook": "start-storybook -p 9000",
+    "precommit": "lint-staged"
   },
   "lint-staged": {
     "*.{tsx,ts}": [
