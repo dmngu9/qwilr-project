@@ -13,5 +13,6 @@ module.exports = {
     clientTsLint: resolveApp('tslint.json'),
     nodeModules: resolveApp('node_modules'),
     enzymeSetup: resolveApp('config/enzyme-setup.js'),
-    serverSrc: resolveApp('server')
+    serverSrc: resolveApp('server'),
+    testCoverage: resolveApp('coverage')
 };

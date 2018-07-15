@@ -1,0 +1,10 @@
+<testsuites name="unit tests" tests="2" failures="0" time="3.539">
+  <testsuite name="test example" errors="0" failures="0" skipped="0" timestamp="2018-07-15T14:11:52" time="1.694" tests="1">
+    <testcase classname="test example should return correctly" name="test example should return correctly" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="test enzyme" errors="0" failures="0" skipped="0" timestamp="2018-07-15T14:11:52" time="2.236" tests="1">
+    <testcase classname="test enzyme should render correctly" name="test enzyme should render correctly" time="0.011">
+    </testcase>
+  </testsuite>
+</testsuites>
