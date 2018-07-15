@@ -52,7 +52,7 @@
         "@storybook/addon-actions": "^3.4.8",
         "@storybook/addon-viewport": "^3.4.8",
         "@storybook/addons": "^3.4.8",
-        "@storybook/react": "^3.4.8",
+        "@storybook/react": "4.0.0-alpha.7",
         "@types/bcrypt-nodejs": "^0.0.30",
         "@types/body-parser": "^1.16.8",
         "@types/dotenv": "^4.0.2",
