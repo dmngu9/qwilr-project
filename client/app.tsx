@@ -5,7 +5,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 const App: React.StatelessComponent = () => (
     <BrowserRouter>
         <Switch>
-            <Route exact path="/about" render={() => <div>hey you</div>} />
+            <Route exact path="/about" render={() => <div>hey yu</div>} />
             <Route exact path="/profile" render={() => <div>profile</div>} />
         </Switch>
     </BrowserRouter>
