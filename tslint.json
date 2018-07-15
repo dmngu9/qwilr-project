@@ -7,9 +7,7 @@
         "tslint-no-circular-imports",
         "rxjs-tslint-rules"
     ],
-    "rulesDirectory": [
-        "node_modules/tslint-no-focused-test"
-    ],
+    "rulesDirectory": ["node_modules/tslint-no-focused-test"],
     "rules": {
         "space-in-parens": false,
         "semicolon": [true, "always"],
@@ -32,7 +30,7 @@
         "ordered-imports": false,
         "variable-name": [true, "ban-keywords", "check-format", "allow-pascal-case"],
         "import-name": false,
-        "no-console": true,
+        "no-console": false,
         "no-unused-expression": false,
         "no-unused-variable": false,
         "no-for-in-array": true,
