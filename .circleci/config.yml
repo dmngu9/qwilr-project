@@ -24,15 +24,12 @@ jobs:
       - restore_cache: # special step to restore the dependency cache 
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
-          name: Install dependencies
+          name: Install dependencies and build
           command: yarn install
       - save_cache: # special step to save the dependency cache
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
-      - run:
-          name: Build
-          command: yarn build
       - run: # run tests
           name: Test
           command: yarn test:ci
@@ -47,3 +44,10 @@ jobs:
           destination: coverage
       - store_test_results: # special step to upload test results for display in Test Summary
           path: test-results
+
+  deploy:
+    steps:
+    - checkout
+    - run:
+        name: Deploy Master to Heroku
+        command: git push https://heroku:26f874e8-c7fc-4a52-8199-e22aa9bee959@git.heroku.com/qwilr-project.git master
