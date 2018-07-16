@@ -11,7 +11,7 @@ module.exports = {
     ],
     setupTestFrameworkScriptFile: paths.enzymeSetup,
     snapshotSerializers: ['enzyme-to-json/serializer'],
-    testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$',
+    testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(ts|tsx)$',
     moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
     coverageDirectory: paths.testCoverage,
     notify: true,
