@@ -44,10 +44,6 @@ jobs:
           destination: coverage
       - store_test_results: # special step to upload test results for display in Test Summary
           path: test-results
-
-  deploy:
-    steps:
-    - checkout
-    - run:
-        name: Deploy Master to Heroku
-        command: git push https://heroku:26f874e8-c7fc-4a52-8199-e22aa9bee959@git.heroku.com/qwilr-project.git master
+      - run:
+          name: Deploy to Heroku
+          command: git push https://heroku:26f874e8-c7fc-4a52-8199-e22aa9bee959@git.heroku.com/qwilr-project.git master
