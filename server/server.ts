@@ -1,4 +1,4 @@
-import express, { Application } from 'express';
+import express, { Application, Request, Response } from 'express';
 import mongoose from 'mongoose';
 import mongo from 'connect-mongo';
 import session from 'express-session';
@@ -33,7 +33,11 @@ const db = mongoose.connection;
 db.on('error', error => console.error(`Failed to connect to database: ${error}`));
 db.once('open', () => console.log('Successfully connect to database'));
 
-app.use(express.static('dist'));
+app.get('/', (req: Request, res: Response) => {
+    res.redirect('/my/dashboard');
+});
+
+app.use(express.static('dist', { redirect: false }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -57,8 +61,8 @@ app.use(passport.session());
 app.use(expressValidator());
 
 app.use('/auth', authRoutes);
+app.use('/my', transactionRoutes);
 app.use('/api', api);
-app.use('/', transactionRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server listen on port ${PORT}`);

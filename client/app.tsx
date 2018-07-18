@@ -51,10 +51,10 @@ const App: React.StatelessComponent = () => (
                     </form>
                 )}
             />
-            <Route exact path="/dashboard" render={() => <Button />} />
-            <Route exact path="/trade" render={() => <div>Trade</div>} />
-            <Route exact path="/buy/:sharecode" render={() => <div>buy share</div>} />
-            <Route exact path="/sell/:sharecode" render={() => <div>sell share</div>} />
+            <Route exact path="/my/dashboard" render={() => <Button />} />
+            <Route exact path="/my/trade" render={() => <div>Trade</div>} />
+            <Route exact path="/my/buy/:sharecode" render={() => <div>buy share</div>} />
+            <Route exact path="/my/sell/:sharecode" render={() => <div>sell share</div>} />
         </Switch>
     </BrowserRouter>
 );

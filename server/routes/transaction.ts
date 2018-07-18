@@ -4,6 +4,10 @@ import { isAuthenticated } from '../config';
 
 const router = express.Router();
 
+router.get('/', (req: Request, res: Response) => {
+    res.redirect('/my/dashboard');
+});
+
 router.get('/dashboard', isAuthenticated, (req: Request, res: Response) => {
     res.sendFile('index.html', { root: 'dist' });
 });
@@ -18,10 +22,6 @@ router.get('/buy/:sharecode', isAuthenticated, (req: Request, res: Response) => 
 
 router.get('/sell/:sharecode', isAuthenticated, (req: Request, res: Response) => {
     res.sendFile('index.html', { root: 'dist' });
-});
-
-router.get('/', isAuthenticated, (req: Request, res: Response) => {
-    res.redirect('/dashboard');
 });
 
 export default router;

@@ -37,7 +37,7 @@ router.post('/signin', authFormFieldValidator, (req: Request, res: Response, nex
             if (!!error) {
                 return next(error);
             }
-            return res.redirect('/dashboard');
+            return res.redirect('/my/dashboard');
         });
     })(req, res, next);
 });
