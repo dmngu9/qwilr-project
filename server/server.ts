@@ -1,16 +1,24 @@
-import express, { Request, Response, Application } from 'express';
-import mongoose, { MongooseDocument } from 'mongoose';
+import express, { Application } from 'express';
+import mongoose from 'mongoose';
+import mongo from 'connect-mongo';
+import session from 'express-session';
+import expressValidator from 'express-validator';
 import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 
-import { User } from './db/models';
+import { authRoutes, transactionRoutes } from './routes';
+import { api } from './api';
+import { passport } from './config';
 
 dotenv.config();
 
 const MONGODB_URI = process.env.MONGODB_URI;
-const port = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8080;
+const SESSION_SECRET = process.env.SESSION_SECRET;
 
 const app: Application = express();
+const SessionStore = mongo(session);
 
 if (!MONGODB_URI) {
     throw new Error('No Mongo Database is provided');
@@ -28,11 +36,30 @@ db.once('open', () => console.log('Successfully connect to database'));
 app.use(express.static('dist'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(
+    session({
+        cookie: {
+            maxAge: 1000 * 60 * 60 * 60
+        },
+        store: new SessionStore({
+            url: MONGODB_URI,
+            autoReconnect: true
+        }),
+        resave: false,
+        saveUninitialized: false,
+        secret: SESSION_SECRET as string,
+        unset: 'destroy'
+    })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(expressValidator());
 
-app.get('/*', (req: Request, res: Response) => {
-    res.sendFile('index.html', { root: 'dist' });
-});
+app.use('/auth', authRoutes);
+app.use('/api', api);
+app.use('/', transactionRoutes);
 
-app.listen(port, () => {
-    console.log(`Server listen on port ${port}`);
+app.listen(PORT, () => {
+    console.log(`Server listen on port ${PORT}`);
 });
