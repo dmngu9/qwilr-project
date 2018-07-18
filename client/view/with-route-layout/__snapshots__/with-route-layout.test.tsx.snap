@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`withRouteLayout should pass in correct component to Route 1`] = `
+<TestLayout>
+  <TestComponent />
+</TestLayout>
+`;
+
+exports[`withRouteLayout should render correctly as Route 1`] = `
+<Route
+  component={[Function]}
+  path="/"
+/>
+`;

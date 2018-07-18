@@ -15,5 +15,6 @@ module.exports = {
     moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
     coverageDirectory: paths.testCoverage,
     notify: true,
+    testEnvironment: 'node',
     verbose: true
 };

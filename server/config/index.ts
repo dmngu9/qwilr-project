@@ -1,1 +1,1 @@
-export { default as passport, isAuthenticated } from './passport';
+export { default as passport, isAuthenticated, canAccessAuthRoutes } from './passport';

@@ -1,62 +1,26 @@
 import * as React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import { Button } from './view/button';
+import { ThemedButton } from './view/themed-button';
+import { ThemeProvider, theme } from './utils/styled-component';
+import { SignInForm } from './view/sign-in-form';
+import { SignUpForm } from './view/sign-up-form';
+import { AuthLayout } from './view/auth-layout';
 
 // tslint:disable
 const App: React.StatelessComponent = () => (
-    <BrowserRouter>
-        <Switch>
-            <Route
-                exact
-                path="/auth/signin"
-                render={() => (
-                    <form action="/api/signin" method="post">
-                        <div>
-                            <label>Username:</label>
-                            <input type="text" name="username" />
-                            <br />
-                        </div>
-                        <div>
-                            <label>Password:</label>
-                            <input type="password" name="password" />
-                        </div>
-                        <div>
-                            <button type="submit">Submit</button>
-                        </div>
-                    </form>
-                )}
-            />
-            <Route
-                exact
-                path="/auth/signup"
-                render={() => (
-                    <form action="/api/signup" method="post">
-                        <div>
-                            <label>Fullname:</label>
-                            <input type="text" name="fullname" />
-                        </div>
-                        <div>
-                            <label>Username:</label>
-                            <input type="text" name="username" />
-                            <br />
-                        </div>
-                        <div>
-                            <label>Password:</label>
-                            <input type="password" name="password" />
-                        </div>
-                        <div>
-                            <button type="submit">Submit</button>
-                        </div>
-                    </form>
-                )}
-            />
-            <Route exact path="/my/dashboard" render={() => <Button />} />
-            <Route exact path="/my/trade" render={() => <div>Trade</div>} />
-            <Route exact path="/my/buy/:sharecode" render={() => <div>buy share</div>} />
-            <Route exact path="/my/sell/:sharecode" render={() => <div>sell share</div>} />
-        </Switch>
-    </BrowserRouter>
+    <ThemeProvider theme={theme}>
+        <BrowserRouter>
+            <Switch>
+                <AuthLayout exact path="/auth/signin" component={SignInForm} />
+                <AuthLayout exact path="/auth/signup" component={SignUpForm} />
+                <Route exact path="/my/dashboard" render={() => <ThemedButton />} />
+                <Route exact path="/my/trade" render={() => <div>Trade</div>} />
+                <Route exact path="/my/buy/:sharecode" render={() => <div>buy share</div>} />
+                <Route exact path="/my/sell/:sharecode" render={() => <div>sell share</div>} />
+            </Switch>
+        </BrowserRouter>
+    </ThemeProvider>
 );
 
 export default App;

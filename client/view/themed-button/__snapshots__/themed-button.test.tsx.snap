@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ThemedButton/> should render correctly as complementary button 1`] = `
+<styled.button
+  complementary={true}
+  onClick={[Function]}
+  type="submit"
+>
+  Submit
+</styled.button>
+`;
+
+exports[`<ThemedButton/> should render correctly as complementary button when disabled 1`] = `
+<styled.button
+  complementary={true}
+  disabled={true}
+  onClick={[Function]}
+  type="submit"
+>
+  Submit
+</styled.button>
+`;
+
+exports[`<ThemedButton/> should render correctly as primary button 1`] = `
+<styled.button
+  onClick={[Function]}
+  type="submit"
+>
+  Submit
+</styled.button>
+`;
+
+exports[`<ThemedButton/> should render correctly as primary button when disabled 1`] = `
+<styled.button
+  disabled={true}
+  onClick={[Function]}
+  type="submit"
+>
+  Submit
+</styled.button>
+`;
