@@ -20,4 +20,8 @@ router.get('/sell/:sharecode', isAuthenticated, (req: Request, res: Response) =>
     res.sendFile('index.html', { root: 'dist' });
 });
 
+router.get('/', isAuthenticated, (req: Request, res: Response) => {
+    res.redirect('/dashboard');
+});
+
 export default router;

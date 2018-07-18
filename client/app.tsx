@@ -51,12 +51,10 @@ const App: React.StatelessComponent = () => (
                     </form>
                 )}
             />
-            <Route exact path="/auth" render={() => <Redirect to="/auth/signin" />} />
             <Route exact path="/dashboard" render={() => <Button />} />
             <Route exact path="/trade" render={() => <div>Trade</div>} />
             <Route exact path="/buy/:sharecode" render={() => <div>buy share</div>} />
             <Route exact path="/sell/:sharecode" render={() => <div>sell share</div>} />
-            <Route exact path="/" render={() => <Redirect to="/dashboard" />} />
         </Switch>
     </BrowserRouter>
 );
