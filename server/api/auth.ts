@@ -20,7 +20,7 @@ const authFormFieldValidator = (req: Request, res: Response, next: NextFunction)
         return next();
     }
 
-    res.json({ status: 400, error: errors });
+    res.status(400).json({ error: errors });
 };
 
 router.post('/signin', authFormFieldValidator, (req: Request, res: Response, next: NextFunction) => {
@@ -30,7 +30,7 @@ router.post('/signin', authFormFieldValidator, (req: Request, res: Response, nex
         }
 
         if (!user) {
-            return res.json({ status: 401, error: 'Invalid username or password' });
+            return res.status(401).json({ error: 'Invalid username or password' });
         }
 
         req.logIn(user, (error: Error) => {
@@ -63,7 +63,7 @@ router.post('/signup', authFormFieldValidator, (req: Request, res: Response) => 
 
     createUser(newUser as UserModel, (err: Error, user: UserModel) => {
         if (!!err) {
-            return res.json({ status: 500, error: err });
+            return res.status(500).json({ error: 'Unable to sign up user. Possibly, username already exists' });
         }
 
         return res.redirect('/auth/signin');

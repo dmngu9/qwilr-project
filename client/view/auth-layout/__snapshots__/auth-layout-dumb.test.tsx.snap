@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AuthLayoutDumb/> should render correctly with children 1`] = `
+<styled.div>
+  <styled.div>
+    <div>
+      Children
+    </div>
+  </styled.div>
+</styled.div>
+`;
+
+exports[`<AuthLayoutDumb/> should render correctly without children 1`] = `
+<styled.div>
+  <styled.div />
+</styled.div>
+`;

@@ -50,4 +50,11 @@ export const isAuthenticated = (req: Request, res: Response, next: NextFunction)
     res.redirect('/auth/signin');
 };
 
+export const canAccessAuthRoutes = (req: Request, res: Response, next: NextFunction) => {
+    if (!req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect('/my/dashboard');
+};
+
 export default passport;
