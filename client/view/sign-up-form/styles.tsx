@@ -14,7 +14,7 @@ export const ButtonContainer = styled.div`
 `;
 
 export const SignUpButton = styled(ThemedButton)`
-    width: 70px;
+    min-width: 75px;
 `;
 
 export const Error = styled.div`
