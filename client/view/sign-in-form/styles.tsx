@@ -14,12 +14,12 @@ export const ButtonContainer = styled.div`
 `;
 
 export const SignInButton = styled(ThemedButton)`
-    width: 70px;
+    min-width: 75px;
     margin-right: 16px;
 `;
 
 export const SignUpButton = styled(ThemedButton)`
-    width: 70px;
+    min-width: 75px;
 `;
 
 export const Error = styled.div`
