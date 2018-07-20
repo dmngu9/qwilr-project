@@ -8,6 +8,7 @@
         "start": "node dist/server.js",
         "test": "jest",
         "build": "rm -rf dist && yarn build:client:prod && yarn build:server",
+        "build:dev": "rm -rf dist && yarn build:client:dev && yarn build:server",
         "test:ci": "rm -rf coverage test-results && jest --ci --coverage",
         "test:client": "jest --testPathPattern=client",
         "test:server": "jest --testPathPattern=server",
