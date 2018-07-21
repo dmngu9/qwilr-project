@@ -8,7 +8,7 @@ import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 
 import { authRoutes, transactionRoutes } from './routes';
-import { api } from './api';
+import { authApi, userApi } from './api';
 import { passport } from './config';
 
 dotenv.config();
@@ -62,7 +62,8 @@ app.use(expressValidator());
 
 app.use('/auth', authRoutes);
 app.use('/my', transactionRoutes);
-app.use('/api', api);
+app.use('/api/auth', authApi);
+app.use('/api/user', userApi);
 
 app.listen(PORT, () => {
     console.log(`Server listen on port ${PORT}`);

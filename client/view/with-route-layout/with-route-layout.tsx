@@ -9,8 +9,8 @@ type RouteFilteredProps = CommonLayoutProps & Pick<RouteProps, 'component' | 'pa
 
 const withRouteLayout = <P extends CommonLayoutProps>(
     Layout: React.ComponentType<P>
-): React.ComponentType<P & RouteFilteredProps> => {
-    return class WrappedComponent extends React.Component<P & RouteFilteredProps> {
+): React.ComponentType<RouteFilteredProps> => {
+    return class WrappedComponent extends React.Component<RouteFilteredProps> {
         render() {
             const { component, path } = this.props;
 
