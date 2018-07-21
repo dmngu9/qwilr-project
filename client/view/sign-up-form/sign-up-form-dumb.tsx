@@ -1,14 +1,36 @@
 import * as React from 'react';
-import { Formik } from 'formik';
-import { FieldTextStateless } from '@atlaskit/field-text';
 
-import { Container, ButtonContainer, SignUpButton, Error } from './styles';
+import { Form, Field } from '../form';
 
 export interface FormValues {
     username: string;
     fullname: string;
     password: string;
 }
+
+const fields: Field[] = [
+    {
+        type: 'text',
+        name: 'fullname',
+        label: 'Fullname',
+        shouldFitContainer: true,
+        required: true
+    },
+    {
+        type: 'text',
+        name: 'username',
+        label: 'Username',
+        shouldFitContainer: true,
+        required: true
+    },
+    {
+        type: 'password',
+        name: 'password',
+        label: 'Password',
+        shouldFitContainer: true,
+        required: true
+    }
+];
 
 interface Props {
     loading: boolean;
@@ -17,56 +39,7 @@ interface Props {
 }
 
 const SignUpFormDumb: React.StatelessComponent<Props> = ({ loading, error, onSignUp }) => (
-    <Container>
-        {!!error && <Error>{error}</Error>}
-        <Formik onSubmit={onSignUp} initialValues={{ username: '', fullname: '', password: '' }}>
-            {({ handleSubmit, handleChange, values }) => (
-                <form onSubmit={handleSubmit}>
-                    <FieldTextStateless
-                        type="text"
-                        onChange={handleChange}
-                        value={values.fullname}
-                        name="fullname"
-                        maxLength={50}
-                        label="Fullname"
-                        compact={false}
-                        shouldFitContainer
-                        required
-                        disabled={loading}
-                    />
-                    <FieldTextStateless
-                        type="text"
-                        onChange={handleChange}
-                        value={values.username}
-                        name="username"
-                        maxLength={50}
-                        label="Username"
-                        compact={false}
-                        shouldFitContainer
-                        required
-                        disabled={loading}
-                    />
-                    <FieldTextStateless
-                        type="password"
-                        onChange={handleChange}
-                        value={values.password}
-                        name="password"
-                        maxLength={50}
-                        label="Password"
-                        compact={false}
-                        shouldFitContainer
-                        required
-                        disabled={loading}
-                    />
-                    <ButtonContainer>
-                        <SignUpButton type="submit" disabled={loading}>
-                            Sign Up
-                        </SignUpButton>
-                    </ButtonContainer>
-                </form>
-            )}
-        </Formik>
-    </Container>
+    <Form loading={loading} error={error} fields={fields} onSubmit={onSignUp} submitButtonName="Sign Up" />
 );
 
 export default SignUpFormDumb;

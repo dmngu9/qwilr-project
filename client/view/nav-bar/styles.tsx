@@ -13,8 +13,6 @@ export const Container = styled.div`
 
     height: 80px;
     width: 100%;
-    position: fixed;
-    top: 0;
     background-color: ${props => props.theme.primaryColor};
     display: flex;
     justify-content: flex-end;

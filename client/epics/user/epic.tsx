@@ -1,19 +1,47 @@
 import { Epic, ofType } from 'redux-observable';
 import { mergeMap, map, catchError } from 'rxjs/operators';
-import { empty } from 'rxjs';
+import { empty, of } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
 
-import { FetchUserInfoAction, FETCH_USER_INFO } from './actions';
-import { fetchUserSuccess, UserReponse, FetchUserSuccessAction } from '../../state/user';
+import {
+    FetchUserInfoAction,
+    FETCH_USER_INFO,
+    UpdateUserDepositAction,
+    UpdateUserDepositPayload,
+    UPDATE_USER_DEPOSIT
+} from './actions';
+import {
+    fetchUserSuccess,
+    UserReponse,
+    FetchUserSuccessAction,
+    updateUserDepositFailure,
+    UpdateUserDepositFailureAction,
+    ErrorResponse
+} from '../../state/user';
 
-const userEpic: Epic<FetchUserInfoAction | FetchUserSuccessAction> = action$ => {
+export const userEpic: Epic<FetchUserInfoAction | FetchUserSuccessAction> = action$ => {
     return action$.pipe(
         ofType(FETCH_USER_INFO),
-        mergeMap(_ => {
-            return ajax.getJSON('/api/user/details').pipe(map(response => fetchUserSuccess(response as UserReponse)));
-        }),
-        catchError(_ => empty())
+        mergeMap(() => {
+            return ajax.getJSON('/api/user/details').pipe(
+                map(response => fetchUserSuccess(response as UserReponse)),
+                catchError(_ => empty())
+            );
+        })
     );
 };
 
-export default userEpic;
+export const userDepositEpic: Epic<
+    UpdateUserDepositAction | FetchUserSuccessAction | UpdateUserDepositFailureAction
+> = action$ => {
+    return action$.pipe(
+        ofType(UPDATE_USER_DEPOSIT),
+        mergeMap(action => {
+            const { url, body, header } = action.payload as UpdateUserDepositPayload;
+            return ajax.post(url, body, header).pipe(
+                map(res => fetchUserSuccess(res.response as UserReponse)),
+                catchError(error => of(updateUserDepositFailure(error.response as ErrorResponse)))
+            );
+        })
+    );
+};

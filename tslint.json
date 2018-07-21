@@ -4,7 +4,7 @@
         "tslint-react",
         "tslint-config-airbnb",
         "tslint-eslint-rules",
-        "tslint-no-circular-imports",
+        // "tslint-no-circular-imports",
         "rxjs-tslint-rules"
     ],
     "rulesDirectory": ["node_modules/tslint-no-focused-test"],

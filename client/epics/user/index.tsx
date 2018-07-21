@@ -1,2 +1,2 @@
-export { default as userEpic } from './epic';
-export { fetchUserInfo } from './actions';
+export { userEpic, userDepositEpic } from './epic';
+export { fetchUserInfo, UPDATE_USER_DEPOSIT, UpdateUserDepositAction, updateUserDeposit } from './actions';

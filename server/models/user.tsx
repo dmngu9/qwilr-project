@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose, { Promise } from 'mongoose';
 import bcrypt from 'bcrypt-nodejs';
 
 export interface Shares {
@@ -41,6 +41,12 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('user', userSchema);
 
+export const getUserById = (id: string) => {
+    return User.findById(id, '-password -_id -__v')
+        .lean()
+        .exec();
+};
+
 export const createUser = (newUser: UserModel, cb: (err: Error, user: UserModel) => void) => {
     bcrypt.genSalt(10, (err: Error, salt: string) => {
         if (err) {
@@ -63,6 +69,20 @@ export const createUser = (newUser: UserModel, cb: (err: Error, user: UserModel)
                 newUser.save(cb);
             }
         );
+    });
+};
+
+export const findUserByIdAndUpdateDeposit = (id: string, offsetAmount: number) => {
+    return getUserById(id).then((user: UserModel) => {
+        const newDepositBalance = user.deposit + offsetAmount;
+
+        if (newDepositBalance < 0) {
+            return Promise.reject(new Error('You are not allowed to have negative deposit balance'));
+        }
+
+        return User.findByIdAndUpdate(id, { deposit: newDepositBalance }, { new: true, select: '-password -_id -__v' })
+            .lean()
+            .exec();
     });
 };
 

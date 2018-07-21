@@ -1,1 +1,9 @@
-export { default as User, UserModel, Shares, createUser, validatePassword } from './user';
+export {
+    default as User,
+    UserModel,
+    Shares,
+    createUser,
+    getUserById,
+    findUserByIdAndUpdateDeposit,
+    validatePassword
+} from './user';

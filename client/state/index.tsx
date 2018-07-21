@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 
 import { UserState, userReducer } from './user';
 
-interface State {
+export interface State {
     user: UserState;
 }
 
