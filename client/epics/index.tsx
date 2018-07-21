@@ -1,5 +1,5 @@
 import { combineEpics } from 'redux-observable';
 
-import { userEpic } from './user';
+import { userEpic, userDepositEpic } from './user';
 
-export const rootEpic = combineEpics(userEpic);
+export const rootEpic = combineEpics(userEpic, userDepositEpic);
