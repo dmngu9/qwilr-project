@@ -1,7 +1,6 @@
 import styled, { css } from '../../utils/styled-component';
 import { Link } from 'react-router-dom';
 
-import { borderBox } from '../../utils/mixins';
 import { ThemedButton } from '../themed-button';
 import { media } from '../../utils/breakpoint';
 
@@ -23,12 +22,13 @@ export const Container = styled.div`
     flex-wrap: wrap;
     padding: 0 64px;
     font-size: 24px;
-    ${borderBox()};
+    box-sizing: border-box;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 `;
 
 const underline = () => css`
     position: relative;
+    overflow: hidden;
 
     &::before {
         position: absolute;
@@ -37,14 +37,12 @@ const underline = () => css`
         background-color: white;
         height: 2px;
         width: 50%;
-        opacity: 0;
         transform: translateX(-100%);
-        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        transition: transform 0.3s ease-in-out;
     }
 
     &:hover::before {
         transform: translateX(0);
-        opacity: 1;
     }
 `;
 

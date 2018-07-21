@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { ajax } from 'rxjs/observable/dom/ajax';
+import { ajax } from 'rxjs/ajax';
 import { Redirect } from 'react-router-dom';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 
 import SignInFormDumb, { FormValues } from './sign-in-form-dumb';
 
@@ -33,7 +33,7 @@ export default class SignInForm extends React.Component<{}, State> {
         this.subscription.add(
             ajax
                 .post(
-                    '/api/signin',
+                    '/api/auth/signin',
                     { username: values.username, password: values.password },
                     { 'Content-Type': 'application/x-www-form-urlencoded' }
                 )

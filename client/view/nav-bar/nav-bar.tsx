@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { ajax } from 'rxjs/observable/dom/ajax';
+import { ajax } from 'rxjs/ajax';
 import { Redirect } from 'react-router-dom';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 
 import NavBarDumb from './nav-bar-dumb';
 
@@ -24,7 +24,7 @@ export default class NavBar extends React.Component<{}, State> {
     }
 
     onLogout = () => {
-        const subs = ajax.get('/api/signout').subscribe(() => this.setState({ loggedOut: true }));
+        const subs = ajax.get('/api/auth/signout').subscribe(() => this.setState({ loggedOut: true }));
 
         this.subscription.add(subs);
     }
