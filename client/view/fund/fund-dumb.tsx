@@ -43,7 +43,7 @@ const FundDumb: React.StatelessComponent<Props> = ({
     return (
         <div>
             <Fund>Funds</Fund>
-            <Deposit>${deposit} available to purchase</Deposit>
+            <Deposit>${deposit} available</Deposit>
             {form !== 'none' && (
                 <Form
                     loading={loading}

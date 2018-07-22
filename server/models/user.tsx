@@ -28,7 +28,8 @@ const userSchema = new mongoose.Schema({
     fullname: String,
     deposit: {
         type: Number,
-        default: 0
+        default: 0,
+        min: [0, 'Deposit cannot be negative']
     },
     shares: [
         {
