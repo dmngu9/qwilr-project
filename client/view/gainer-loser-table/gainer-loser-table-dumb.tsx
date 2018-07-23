@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { Table } from '../table';
-import { TableContainer, Header } from './styles';
+import { TableContainer, Header, Container } from './styles';
 
 export interface Stock {
     symbol: string;
@@ -19,12 +19,14 @@ interface Props {
 const GainerLoserTableDumb: React.StatelessComponent<Props> = ({ stocks, loading, type }) => {
     const header = type === 'gainer' ? 'Top gainers today' : 'Top losers today';
     return (
-        <div>
-            <Header>{header}</Header>
+        <Container>
+            <Header>
+                <strong>{header}</strong>
+            </Header>
             <TableContainer>
                 <Table rows={stocks as Stock[]} loading={loading} />
             </TableContainer>
-        </div>
+        </Container>
     );
 };
 

@@ -18,7 +18,9 @@ interface Props {
 
 const SearchShareDumb: React.StatelessComponent<Props> = ({ onChange, stock }) => (
     <Container>
-        <Header>Search for stock</Header>
+        <Header>
+            <strong>Search for stock</strong>
+        </Header>
         <TextFieldContainer>
             <FieldTextStateless
                 required

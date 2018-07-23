@@ -2,14 +2,13 @@ import * as React from 'react';
 import { DynamicTableStateless } from '@atlaskit/dynamic-table';
 import Spinner from '@atlaskit/spinner';
 
-import { Header, Total, BuyLink, SellLink } from './styles';
+import { Header, Total, BuyLink, SellLink, RowCell, Buttons, Container } from './styles';
 
 export interface Stock {
     symbol: string;
     company: string;
     price: number;
     quanity: number;
-    totalValue: number;
     changePercentage: number;
 }
 
@@ -25,27 +24,38 @@ class PortfolioDumb extends React.Component<Props> {
             cells: [
                 {
                     key: 'quantity',
-                    content: 'Quanity'
+                    content: 'Quanity',
+                    shouldTruncate: true,
+                    width: 10
                 },
                 {
                     key: 'symbol',
-                    content: 'Symbol'
+                    content: 'Symbol',
+                    shouldTruncate: true,
+                    width: 10
                 },
                 {
                     key: 'company',
-                    content: 'Company'
+                    content: 'Company',
+                    shouldTruncate: true,
+                    width: 23
                 },
                 {
                     key: 'price-change',
-                    content: 'Price Change'
+                    content: 'Price Change',
+                    shouldTruncate: true,
+                    width: 23
                 },
                 {
                     key: 'price',
-                    content: 'Price'
+                    content: 'Price',
+                    shouldTruncate: true,
+                    width: 23
                 },
                 {
-                    key: 'totalValue',
-                    content: 'Total Value'
+                    key: 'button',
+                    content: '',
+                    width: 11
                 }
             ]
         };
@@ -57,35 +67,35 @@ class PortfolioDumb extends React.Component<Props> {
                 cells: [
                     {
                         key: `${row.symbol}-${index}`,
-                        content: <div>{row.quanity}</div>
+                        content: <RowCell>{row.quanity}</RowCell>
                     },
                     {
                         key: `${row.symbol}`,
-                        content: <div>{row.symbol}</div>
+                        content: <RowCell>{row.symbol}</RowCell>
                     },
                     {
                         key: `${row.symbol}-${row.company}`,
-                        content: <div>{row.company}</div>
+                        content: <RowCell>{row.company}</RowCell>
                     },
                     {
                         key: `${row.symbol}-${row.changePercentage}`,
-                        content: <div>{row.changePercentage}%</div>
+                        content: <RowCell>{row.changePercentage}%</RowCell>
                     },
                     {
                         key: `${row.symbol}-price`,
-                        content: <div>${row.price}</div>
-                    },
-                    {
-                        key: `${row.symbol}-totalvalue`,
-                        content: <div>${row.totalValue}</div>
+                        content: <RowCell>${row.price}</RowCell>
                     },
                     {
                         key: `${row.symbol}-buttons`,
                         content: (
-                            <div>
-                                <BuyLink to={`/my/buy/${row.symbol}`}>Buy</BuyLink>
-                                <SellLink to={`/my/sell/${row.symbol}`}>Sell</SellLink>
-                            </div>
+                            <Buttons>
+                                <BuyLink to={`/my/buy/${row.symbol}`}>
+                                    <RowCell>Buy</RowCell>
+                                </BuyLink>
+                                <SellLink to={`/my/sell/${row.symbol}`}>
+                                    <RowCell>Sell</RowCell>
+                                </SellLink>
+                            </Buttons>
                         )
                     }
                 ]
@@ -96,8 +106,10 @@ class PortfolioDumb extends React.Component<Props> {
     render() {
         const { balance, loading } = this.props;
         return (
-            <div>
-                <Header>Portfolio</Header>
+            <Container>
+                <Header>
+                    <strong>Portfolio</strong>
+                </Header>
                 <Total>
                     Portfolio value: <strong>${balance}</strong>
                 </Total>
@@ -107,11 +119,12 @@ class PortfolioDumb extends React.Component<Props> {
                         head={this.createTableHeaders()}
                         rows={this.createTableRows()}
                         loadingSpinnerSize="large"
+                        isFixedSize
                         emptyView={<h4>You currently do not own any stock</h4>}
                         isLoading={loading}
                     />
                 )}
-            </div>
+            </Container>
         );
     }
 }

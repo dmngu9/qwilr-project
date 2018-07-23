@@ -11,9 +11,9 @@ const DashBoard: React.StatelessComponent = () => (
         <Welcome />
         <Fund />
         <SearchShare />
+        <Portfolio />
         <GainerLoserTable type="gainer" />
         <GainerLoserTable type="loser" />
-        <Portfolio />
     </div>
 );
 

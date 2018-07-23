@@ -66,7 +66,6 @@ class Portfolio extends React.Component<Props, State> {
                                 company: returnedStocksQuote[stockSymbol].quote.companyName,
                                 price: returnedStocksQuote[stockSymbol].quote.latestPrice,
                                 quanity: shares[index].quantity,
-                                totalValue: shares[index].quantity * returnedStocksQuote[stockSymbol].quote.latestPrice,
                                 changePercentage: parseFloat(
                                     returnedStocksQuote[stockSymbol].quote.changePercent.toFixed(2)
                                 )
