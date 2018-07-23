@@ -1,7 +1,15 @@
 import * as React from 'react';
 
-import { Form, Field } from '../form';
-import { Fund, Deposit, ButtonContainer, ShowDepositFormButton, ShowWithdrawFormButton } from './styles';
+import { Field } from '../form';
+import {
+    Fund,
+    Deposit,
+    ButtonContainer,
+    ShowDepositFormButton,
+    ShowWithdrawFormButton,
+    Container,
+    StyledForm
+} from './styles';
 
 export interface FormValues {
     amount: number;
@@ -41,11 +49,13 @@ const FundDumb: React.StatelessComponent<Props> = ({
     const submitButtonName = form === 'deposit' ? 'Deposit' : 'Withdraw';
 
     return (
-        <div>
+        <Container>
             <Fund>Funds</Fund>
-            <Deposit>${deposit} available</Deposit>
+            <Deposit>
+                <strong>${deposit} available</strong>
+            </Deposit>
             {form !== 'none' && (
-                <Form
+                <StyledForm
                     loading={loading}
                     error={error}
                     fields={fields}
@@ -63,7 +73,7 @@ const FundDumb: React.StatelessComponent<Props> = ({
                     </ShowWithdrawFormButton>
                 </ButtonContainer>
             )}
-        </div>
+        </Container>
     );
 };
 

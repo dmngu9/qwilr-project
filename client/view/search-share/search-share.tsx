@@ -34,7 +34,10 @@ export default class SearchShare extends React.Component<{}, State> {
 
                 this.setState({ stock });
             },
-            _ => empty()
+            _ => {
+                this.setState({ stock: undefined });
+                return empty();
+            }
         );
 
         this.subscription.add(subs);

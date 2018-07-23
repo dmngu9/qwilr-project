@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DynamicTableStateless } from '@atlaskit/dynamic-table';
 
-import { BuyLink } from './styles';
+import { BuyLink, RowCell } from './styles';
 
 interface Row {
     symbol: string;
@@ -22,19 +22,29 @@ export default class Table extends React.Component<Props> {
             cells: [
                 {
                     key: 'symbol',
-                    content: 'Symbol'
+                    content: 'Symbol',
+                    width: 15
                 },
                 {
                     key: 'company',
-                    content: 'Company'
+                    content: 'Company',
+                    shouldTruncate: true,
+                    width: 25
                 },
                 {
                     key: 'price-change',
-                    content: 'Price Change'
+                    content: 'Price Change',
+                    width: 25
                 },
                 {
                     key: 'price',
-                    content: 'Price'
+                    content: 'Price',
+                    width: 25
+                },
+                {
+                    key: 'button',
+                    content: '',
+                    width: 10
                 }
             ]
         };
@@ -46,23 +56,27 @@ export default class Table extends React.Component<Props> {
                 cells: [
                     {
                         key: `${row.symbol}`,
-                        content: <div>{row.symbol}</div>
+                        content: <RowCell>{row.symbol}</RowCell>
                     },
                     {
                         key: `${row.symbol}-${row.company}`,
-                        content: <div>{row.company}</div>
+                        content: <RowCell>{row.company}</RowCell>
                     },
                     {
                         key: `${row.symbol}-${row.changePercentage}`,
-                        content: <div>{row.changePercentage}%</div>
+                        content: <RowCell>{row.changePercentage}%</RowCell>
                     },
                     {
                         key: `${row.symbol}-price`,
-                        content: <div>${row.price}</div>
+                        content: <RowCell>${row.price}</RowCell>
                     },
                     {
                         key: `${row.symbol}-buttons`,
-                        content: <BuyLink to={`/my/buy/${row.symbol}`}>Buy</BuyLink>
+                        content: (
+                            <BuyLink to={`/my/buy/${row.symbol}`}>
+                                <RowCell>Buy</RowCell>
+                            </BuyLink>
+                        )
                     }
                 ]
             };
@@ -77,6 +91,7 @@ export default class Table extends React.Component<Props> {
                 head={this.createTableHeaders()}
                 rows={this.createTableRows()}
                 loadingSpinnerSize="large"
+                isFixedSize
                 isLoading={loading}
             />
         );

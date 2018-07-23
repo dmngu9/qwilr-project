@@ -20,6 +20,7 @@ interface Props {
     submitButtonName: string;
     onAlternativeAction?: () => void;
     alternativeActionButtonName?: string;
+    className?: string;
 }
 
 const Form: React.StatelessComponent<Props> = ({
@@ -29,9 +30,10 @@ const Form: React.StatelessComponent<Props> = ({
     onSubmit,
     submitButtonName,
     onAlternativeAction,
-    alternativeActionButtonName
+    alternativeActionButtonName,
+    className
 }) => (
-    <Container>
+    <Container className={className}>
         {!!error && <Error>{error}</Error>}
         <Formik onSubmit={onSubmit} initialValues={{}}>
             {({ handleSubmit, handleChange }) => (
