@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DynamicTableStateless } from '@atlaskit/dynamic-table';
 
-import { BuyLink, SellLink } from './styles';
+import { BuyLink } from './styles';
 
 interface Row {
     symbol: string;
@@ -11,7 +11,6 @@ interface Row {
 }
 
 interface Props {
-    showSellLink?: boolean;
     caption?: React.ReactNode;
     rows: Row[];
     loading?: boolean;
@@ -63,12 +62,7 @@ export default class Table extends React.Component<Props> {
                     },
                     {
                         key: `${row.symbol}-buttons`,
-                        content: (
-                            <div>
-                                <BuyLink to={`/my/buy/${row.symbol}`}>Buy</BuyLink>
-                                {!!this.props.showSellLink && <SellLink to={`/my/sell/${row.symbol}`}>Sell</SellLink>}
-                            </div>
-                        )
+                        content: <BuyLink to={`/my/buy/${row.symbol}`}>Buy</BuyLink>
                     }
                 ]
             };

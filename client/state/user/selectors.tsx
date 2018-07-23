@@ -25,3 +25,5 @@ export const getDepositError = (state: State) => {
 
     return state.user.deposit.error;
 };
+
+export const getShares = (state: State) => state.user.shares;

@@ -25,6 +25,6 @@ const rows = [
 ];
 
 themedStoriesOf('Table', module)
-    .add('basic', () => <Table caption="Table" rows={rows} showSellLink />)
+    .add('basic', () => <Table caption="Table" rows={rows} />)
     .add('without sell link', () => <Table caption="Table" rows={rows} />)
     .add('loading', () => <Table caption="Table" rows={rows} loading />);
