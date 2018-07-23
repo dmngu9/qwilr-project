@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { themedStoriesOf } from '../../utils/storybook';
-import LosersTable from './losers-table-dumb';
+import GainerLoserTable from './gainer-loser-table-dumb';
 
 const stocks = [
     {
@@ -24,6 +24,7 @@ const stocks = [
     }
 ];
 
-themedStoriesOf('LosersTable', module)
-    .add('basic', () => <LosersTable stocks={stocks} />)
-    .add('loading', () => <LosersTable stocks={stocks} loading />);
+themedStoriesOf('GainerLoserTable', module)
+    .add('gainer', () => <GainerLoserTable type="gainer" stocks={stocks} />)
+    .add('loser', () => <GainerLoserTable type="loser" stocks={stocks} />)
+    .add('loading', () => <GainerLoserTable type="loser" stocks={stocks} loading />);

@@ -37,6 +37,7 @@
     "dependencies": {
         "@atlaskit/dynamic-table": "^10.0.1",
         "@atlaskit/field-text": "^7.0.1",
+        "@atlaskit/spinner": "^9.0.2",
         "babel-core": "^6.26.3",
         "bcrypt-nodejs": "^0.0.3",
         "body-parser": "^1.18.2",

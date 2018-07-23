@@ -17,7 +17,3 @@ export const BuyLink = styled(Link)`
     ${linkMixins()};
     margin-right: 16px;
 `;
-
-export const SellLink = styled(Link)`
-    ${linkMixins()};
-`;

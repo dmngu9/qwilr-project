@@ -5,6 +5,7 @@ export {
     FetchUserSuccessAction,
     updateUserDepositFailure,
     UpdateUserDepositFailureAction,
-    ErrorResponse
+    ErrorResponse,
+    Share
 } from './actions';
-export { getFullname, getDeposit, isUpdatingDeposit, getDepositError } from './selectors';
+export { getFullname, getDeposit, isUpdatingDeposit, getDepositError, getShares } from './selectors';
