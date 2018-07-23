@@ -28,7 +28,8 @@ export default class SearchShare extends React.Component<{}, State> {
                 const stock: Stock = {
                     symbol: res.response.symbol,
                     company: res.response.companyName,
-                    price: res.response.latestPrice
+                    price: res.response.latestPrice,
+                    changePercentage: parseFloat((res.response.changePercent * 100).toFixed(2))
                 };
 
                 this.setState({ stock });

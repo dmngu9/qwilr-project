@@ -1,10 +1,14 @@
 import * as React from 'react';
 import { FieldTextStateless } from '@atlaskit/field-text';
 
+import { Table } from '../table';
+import { Header, Container, TextFieldContainer } from './styles';
+
 export interface Stock {
     symbol: string;
     company: string;
     price: number;
+    changePercentage: number;
 }
 
 interface Props {
@@ -13,17 +17,20 @@ interface Props {
 }
 
 const SearchShareDumb: React.StatelessComponent<Props> = ({ onChange, stock }) => (
-    <div>
-        <FieldTextStateless
-            required
-            label="Enter text to find stock"
-            type="text"
-            name="stock"
-            onChange={onChange}
-            shouldFitContainer
-        />
-        <div>{JSON.stringify(stock)}</div>
-    </div>
+    <Container>
+        <Header>Search for stock</Header>
+        <TextFieldContainer>
+            <FieldTextStateless
+                required
+                label="Enter text to find stock"
+                type="text"
+                name="stock"
+                onChange={onChange}
+                shouldFitContainer
+            />
+        </TextFieldContainer>
+        {!!stock && <Table rows={[stock]} />}
+    </Container>
 );
 
 export default SearchShareDumb;
