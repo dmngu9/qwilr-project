@@ -7,8 +7,8 @@ import { SignInForm } from './view/sign-in-form';
 import { SignUpForm } from './view/sign-up-form';
 import { AuthLayout } from './view/auth-layout';
 import { MainLayout } from './view/main-layout';
-import { Fund } from './view/fund';
-import { SearchShare } from './view/search-share';
+import { DashBoardPage } from './view/dashboard-page';
+
 import store from './redux-store';
 
 const App: React.StatelessComponent = () => (
@@ -18,10 +18,10 @@ const App: React.StatelessComponent = () => (
                 <Switch>
                     <AuthLayout exact path="/auth/signin" component={SignInForm} />
                     <AuthLayout exact path="/auth/signup" component={SignUpForm} />
-                    <MainLayout exact path="/my/dashboard" component={SearchShare} />
-                    <MainLayout exact path="/my/trade" component={Fund} />
-                    <MainLayout exact path="/my/buy/:sharecode" component={Fund} />
-                    <MainLayout exact path="/my/sell/:sharecode" component={Fund} />
+                    <MainLayout exact path="/my/dashboard" component={DashBoardPage} />
+                    <MainLayout exact path="/my/trade" component={DashBoardPage} />
+                    <MainLayout exact path="/my/buy/:sharecode" component={DashBoardPage} />
+                    <MainLayout exact path="/my/sell/:sharecode" component={DashBoardPage} />
                 </Switch>
             </BrowserRouter>
         </ThemeProvider>
