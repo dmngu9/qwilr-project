@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express';
 
-import { UserModel, getUserById, findUserByIdAndUpdateDeposit } from '../models';
+import { UserModel, getUserById, findUserByIdAndUpdateDeposit, findUserByIdAndUpdateShares } from '../models';
 
 const router = Router();
 
@@ -36,6 +36,40 @@ router.post('/withdraw', (req: Request, res: Response) => {
     }
 
     findUserByIdAndUpdateDeposit(userId, withdrawAmount)
+        .then((user: UserModel) => res.status(200).send(user))
+        .catch((err: Error) => res.status(400).json({ error: err.message }));
+});
+
+router.post('/buy/:stockSymbol', (req: Request, res: Response) => {
+    const userId = req.session && req.session.passport.user;
+    const code = req.params.stockSymbol;
+    const quantity = parseInt(req.body.quantity, 10);
+    const company = req.body.company;
+    const price = parseFloat(req.body.price);
+
+    if (quantity <= 0) {
+        res.status(400).json({ error: 'Quantity of stock has to be positive' });
+        return;
+    }
+
+    findUserByIdAndUpdateShares(userId, 'buy', { code, company, quantity, price })
+        .then((user: UserModel) => res.status(200).send(user))
+        .catch((err: Error) => res.status(400).json({ error: err.message }));
+});
+
+router.post('/sell/:stockSymbol', (req: Request, res: Response) => {
+    const userId = req.session && req.session.passport.user;
+    const code = req.params.stockSymbol;
+    const quantity = parseInt(req.body.quantity, 10);
+    const company = req.body.company;
+    const price = parseFloat(req.body.price);
+
+    if (quantity <= 0) {
+        res.status(400).json({ error: 'Quantity of stock has to be positive' });
+        return;
+    }
+
+    findUserByIdAndUpdateShares(userId, 'sell', { code, company, quantity, price })
         .then((user: UserModel) => res.status(200).send(user))
         .catch((err: Error) => res.status(400).json({ error: err.message }));
 });

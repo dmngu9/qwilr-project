@@ -1,8 +1,10 @@
-import mongoose, { Promise } from 'mongoose';
+import mongoose from 'mongoose';
 import bcrypt from 'bcrypt-nodejs';
+import { findIndex } from 'lodash';
+import { Promise } from 'es6-promise';
 
 export interface Shares {
-    symbol: string;
+    code: string;
     company: string;
     quantity: number;
 }
@@ -82,6 +84,59 @@ export const findUserByIdAndUpdateDeposit = (id: string, offsetAmount: number) =
         }
 
         return User.findByIdAndUpdate(id, { deposit: newDepositBalance }, { new: true, select: '-password -_id -__v' })
+            .lean()
+            .exec();
+    });
+};
+
+export const findUserByIdAndUpdateShares = (
+    id: string,
+    transactionType: 'buy' | 'sell',
+    share: { code: string; company: string; quantity: number; price: number }
+) => {
+    return getUserById(id).then((user: UserModel) => {
+        const newDepositBalance =
+            transactionType === 'buy'
+                ? user.deposit - share.price * share.quantity
+                : user.deposit + share.price * share.quantity;
+        if (newDepositBalance < 0) {
+            return Promise.reject(new Error('You do not have enough fund for the trade'));
+        }
+
+        let userShares = user.shares;
+
+        const index = findIndex(userShares, s => s.code === share.code);
+
+        if (transactionType === 'buy') {
+            if (index === -1) {
+                userShares = userShares.concat(share);
+            } else {
+                const newQuantity = userShares[index].quantity + share.quantity;
+                userShares[index].quantity = newQuantity;
+            }
+        } else {
+            if (index === -1) {
+                return Promise.reject(new Error(`You do not have ${share.code} to sell`));
+            }
+
+            if (userShares[index].quantity < share.quantity) {
+                return Promise.reject(new Error(`You do not have enough ${share.code} to complete the trade`));
+            }
+
+            const newQuantity = userShares[index].quantity - share.quantity;
+
+            if (newQuantity === 0) {
+                userShares = userShares.filter(s => s.code !== share.code);
+            } else {
+                userShares[index].quantity = newQuantity;
+            }
+        }
+
+        return User.findByIdAndUpdate(
+            id,
+            { shares: userShares, deposit: newDepositBalance },
+            { new: true, select: '-password -_id -__v' }
+        )
             .lean()
             .exec();
     });

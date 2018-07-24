@@ -9,7 +9,6 @@ interface Props {
 const NavBar: React.StatelessComponent<Props> = ({ onLogout }) => (
     <Container>
         <StyledLink to="/my/dashboard">DashBoard</StyledLink>
-        <StyledLink to="/my/trade">Trade</StyledLink>
         <LogOutButton onClick={onLogout}>Log Out</LogOutButton>
     </Container>
 );

@@ -9,6 +9,10 @@ export const Container = styled.div`
     margin-top: 48px;
 `;
 
+export const LoadingContainer = styled.div`
+    margin: 0 auto;
+`;
+
 export const TableContainer = styled.div`
     width: 100%;
     margin-top: 16px;

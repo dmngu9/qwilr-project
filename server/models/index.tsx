@@ -5,5 +5,6 @@ export {
     createUser,
     getUserById,
     findUserByIdAndUpdateDeposit,
+    findUserByIdAndUpdateShares,
     validatePassword
 } from './user';

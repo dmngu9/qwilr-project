@@ -65,9 +65,9 @@ export class Fund extends React.Component<Props, State> {
 }
 
 const selector = createSelector(getDeposit, isUpdatingDeposit, getDepositError, (deposit, loading, error) => ({
-    deposit,
     loading,
-    error
+    error,
+    deposit: parseFloat(deposit.toFixed(2))
 }));
 
 export default connect<StateProps, DispatchProps>(

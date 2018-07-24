@@ -2,7 +2,7 @@ import * as React from 'react';
 import { DynamicTableStateless } from '@atlaskit/dynamic-table';
 import Spinner from '@atlaskit/spinner';
 
-import { Header, Total, BuyLink, SellLink, RowCell, Buttons, Container } from './styles';
+import { Header, Total, BuyLink, SellLink, RowCell, Buttons, Container, LoadingContainer } from './styles';
 
 export interface Stock {
     symbol: string;
@@ -113,7 +113,11 @@ class PortfolioDumb extends React.Component<Props> {
                 <Total>
                     Portfolio value: <strong>${balance}</strong>
                 </Total>
-                {loading && <Spinner size="large" />}
+                {loading && (
+                    <LoadingContainer>
+                        <Spinner size="large" />
+                    </LoadingContainer>
+                )}
                 {!loading && (
                     <DynamicTableStateless
                         head={this.createTableHeaders()}

@@ -82,7 +82,8 @@ class Portfolio extends React.Component<Props, State> {
     }
 
     render() {
-        return <PortfolioDumb stocks={this.state.stocks} loading={this.state.loading} balance={this.state.balance} />;
+        const balance = parseFloat(this.state.balance.toFixed(2));
+        return <PortfolioDumb stocks={this.state.stocks} loading={this.state.loading} balance={balance} />;
     }
 }
 
