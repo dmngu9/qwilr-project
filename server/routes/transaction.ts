@@ -12,15 +12,11 @@ router.get('/dashboard', isAuthenticated, (req: Request, res: Response) => {
     res.sendFile('index.html', { root: 'dist' });
 });
 
-router.get('/trade', isAuthenticated, (req: Request, res: Response) => {
+router.get('/buy/:stockSymbol', isAuthenticated, (req: Request, res: Response) => {
     res.sendFile('index.html', { root: 'dist' });
 });
 
-router.get('/buy/:sharecode', isAuthenticated, (req: Request, res: Response) => {
-    res.sendFile('index.html', { root: 'dist' });
-});
-
-router.get('/sell/:sharecode', isAuthenticated, (req: Request, res: Response) => {
+router.get('/sell/:stockSymbol', isAuthenticated, (req: Request, res: Response) => {
     res.sendFile('index.html', { root: 'dist' });
 });
 

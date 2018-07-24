@@ -5,6 +5,8 @@ export {
     FetchUserSuccessAction,
     updateUserDepositFailure,
     UpdateUserDepositFailureAction,
+    updateUserSharesFailure,
+    UpdateUserSharesFailureAction,
     ErrorResponse,
     Share
 } from './actions';

@@ -1,5 +1,11 @@
 import * as React from 'react';
-import { RouteProps, Route } from 'react-router-dom';
+import { RouteProps, Route, RouteComponentProps } from 'react-router-dom';
+
+interface RouteParam {
+    stockSymbol: string;
+}
+
+type RouterComponentProps = RouteComponentProps<RouteParam>;
 
 interface CommonLayoutProps {
     children?: React.ReactNode;
@@ -14,10 +20,10 @@ const withRouteLayout = <P extends CommonLayoutProps>(
         render() {
             const { component, path } = this.props;
 
-            const Component = component as React.ComponentType;
-            const RouterComponent: React.StatelessComponent = () => (
+            const Component = component as React.ComponentType<RouterComponentProps>;
+            const RouterComponent: React.StatelessComponent<RouterComponentProps> = props => (
                 <Layout>
-                    <Component />
+                    <Component {...props} />
                 </Layout>
             );
 

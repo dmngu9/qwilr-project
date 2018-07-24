@@ -1,7 +1,7 @@
 import styled from '../../utils/styled-component';
 
-export const Container = styled.h4`
-    color: #666;
-    margin: 32px 0 0;
+export const Container = styled.h1`
+    color: ${props => props.theme.primaryColor};
+    margin: 0;
     text-align: center;
 `;

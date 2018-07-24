@@ -1,3 +1,4 @@
+import { polyfill } from 'es6-promise';
 import express, { Application, Request, Response } from 'express';
 import mongoose from 'mongoose';
 import mongo from 'connect-mongo';
@@ -12,6 +13,7 @@ import { authApi, userApi } from './api';
 import { passport } from './config';
 
 dotenv.config();
+polyfill();
 
 const MONGODB_URI = process.env.MONGODB_URI;
 const PORT = process.env.PORT || 8080;
