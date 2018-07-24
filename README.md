@@ -10,7 +10,7 @@ This also run the post install process which builds the project. After that, sta
 
 `yarn start`
 
-Go to localhost:8000 and try the app.
+Go to localhost:8000 and try the app. It actually might not work because the key to database is not included in the repo. It is best to try out the [production instance](https://qwilr-project.herokuapp.com/)
 
 *Storybook*
 
@@ -28,3 +28,4 @@ It should be on port 9000.
 + client and server are in the same repo. I am not a fan of this but since the project is small enough to put them all together.
 + Dashboard page does not look good on mobile
 + Atlaskit input component with type="number" always expect step size of 1. So no float number is accpeted. Just realized that, otherwise I can just use barebone html input tag with custom step size.
++ No logo, favicon, page title, footer
