@@ -127,7 +127,6 @@ export const getShareLoading = (state: State, props: Props) => {
 };
 
 export const getShareError = (state: State, props: Props) => {
-    console.log(props);
     if (!!state.user && !!state.user.shares) {
         console.log(state.user);
         const tradeShare = state.user.shares.filter(share => share.code === props.stockSymbol);
